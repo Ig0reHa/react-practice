@@ -1,9 +1,9 @@
 import React from 'react';
 import MyButton from "../button/MyButton";
-import {getPagesArray} from "../../../utils/pages";
+import {usePagesArray} from "../../../hooks/usePagesArray";
 
 const Pagination = ({totalPages, page, changePage}) => {
-	let pagesArray = getPagesArray(totalPages)
+	let pagesArray = usePagesArray(totalPages)
 	return (
 		<div className="pagi_buttons">
 			{pagesArray.map(p =>
