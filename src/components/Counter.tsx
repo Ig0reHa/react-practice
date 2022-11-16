@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 
-const Counter = () => {
+const Counter: FC = () => {
 	const [count, setCount] = useState(0)
 	
 	function increment() {

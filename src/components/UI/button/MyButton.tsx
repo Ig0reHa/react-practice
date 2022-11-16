@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {ButtonHTMLAttributes, FC} from 'react';
 import classes from './MyButton.module.css'
 
-const MyButton = ({children, ...props}) => {
+interface MyButtonProps {
+	children: React.ReactNode
+	className?: string
+	onClick?: (e?: any) => void
+}
+
+const MyButton: FC<MyButtonProps> = ({children, ...props}) => {
 	return (
 		<button {...props} className={[classes.myBtn, props.className].join(' ')}>
 			{children}

@@ -1,6 +1,13 @@
-import React from 'react';
+import React, {FC} from 'react';
 
-const MySelect = ({option, defaultValue, value, onChange}) => {
+interface MySelectProps {
+	option: Array<{value: any, name: any}>,
+	defaultValue: any
+	value: any
+	onChange: (value: any) => void
+}
+
+const MySelect: FC<MySelectProps> = ({option, defaultValue, value, onChange}) => {
 	return (
 		<select
 			value={value}

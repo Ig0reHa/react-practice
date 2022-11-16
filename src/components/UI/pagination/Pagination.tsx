@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {FC} from 'react';
 import MyButton from "../button/MyButton";
 import {usePagesArray} from "../../../hooks/usePagesArray";
 
-const Pagination = ({totalPages, page, changePage}) => {
+interface PaginationProps {
+	totalPages: number
+	page: number
+	changePage: (page: number) => void
+}
+
+const Pagination: FC<PaginationProps> = ({totalPages, page, changePage}) => {
 	let pagesArray = usePagesArray(totalPages)
 	return (
 		<div className="pagi_buttons">

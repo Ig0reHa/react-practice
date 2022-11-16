@@ -1,8 +1,16 @@
-import React, {useRef} from 'react';
+import React, {FC, useRef} from 'react';
 import PostItem from "./PostItem";
+// @ts-ignore
 import {TransitionGroup, CSSTransition} from "react-transition-group";
+import {I_Post} from "../types/types";
 
-const PostList = ({posts, title, remove}) => {
+interface PostListProps {
+	posts: I_Post[]
+	title: string
+	remove: (post: I_Post) => void
+}
+
+const PostList: FC<PostListProps> = ({posts, title, remove}) => {
 	if (!posts.length) {
 		return ( <h1 style={{textAlign: 'center', margin: '30px'}}>No posts</h1> )
 	}

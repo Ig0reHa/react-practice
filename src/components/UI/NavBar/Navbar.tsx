@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {FC} from 'react';
 import MyButton from "../button/MyButton";
 import {useMatch, useNavigate} from "react-router-dom";
 
-const Navbar = () => {
+const Navbar: FC = () => {
 	const navigate = useNavigate()
 	const match = useMatch("/about")
 

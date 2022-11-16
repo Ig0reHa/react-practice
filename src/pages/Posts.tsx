@@ -1,6 +1,8 @@
-import {useEffect, useRef, useState} from "react";
+import {createRef, useEffect, useState} from "react";
+import {E_SortOptions, I_Post} from "../types/types";
 import {useFetching} from "../hooks/useFetching";
 import {usePosts} from "../hooks/usePosts";
+import {useObserver} from "../hooks/useObserver";
 import {getPageCount} from "../utils/pages";
 import PostList from "../components/PostList";
 import PostForm from "../components/PostForm";
@@ -10,21 +12,20 @@ import MyButton from "../components/UI/button/MyButton";
 import Loader from "../components/UI/Loader/Loader";
 import Pagination from "../components/UI/pagination/Pagination";
 import PostService from "../API/PostService";
-import '../styles/App.css'
-import {useObserver} from "../hooks/useObserver";
 import MySelect from "../components/UI/select/MySelect";
+import '../styles/App.css'
 
 function Posts() {
-	const [posts, setPosts] = useState([])
-	const [filter, setFilter] = useState({sort: '', query: ''})
-	const [modal, setModal] = useState(false)
-	const [totalPages, setTotalPages] = useState(0)
-	const [limit, setLimit] = useState(10)
-	const [page, setPage] = useState(1)
+	const [posts, setPosts] = useState<I_Post[]>([])
+	const [filter, setFilter] = useState<{sort: E_SortOptions, query: string}>({sort: E_SortOptions.nosort, query: ''})
+	const [modal, setModal] = useState<boolean>(false)
+	const [totalPages, setTotalPages] = useState<number>(0)
+	const [limit, setLimit] = useState<number>(10)
+	const [page, setPage] = useState<number>(1)
 	const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query)
-	const lastElement = useRef()
+	const lastElement = createRef<HTMLDivElement>()
 
-	const [fetchPosts, isPostLoading, postError] = useFetching(async (limit, page) => {
+	const [fetchPosts, isPostLoading, postError] = useFetching(async (limit: number, page: number) => {
 		const response = await PostService.getAll(limit, page)
 		setPosts([...posts, ...response.data])
 		const totalCount = response.headers['x-total-count']
@@ -39,16 +40,16 @@ function Posts() {
 		fetchPosts(limit, page)
 	}, [page, limit])
 
-	const createPost = (newPost) => {
+	const createPost = (newPost: I_Post) => {
 		setPosts([...posts, newPost])
 		setModal(false)
 	}
 
-	const removePost = (post) => {
+	const removePost = (post: I_Post) => {
 		setPosts(posts.filter(p => p.id !== post.id))
 	}
 
-	const changePage = (page) => {
+	const changePage = (page: number) => {
 		setPage(page)
 	}
 
@@ -75,7 +76,7 @@ function Posts() {
 				]}
 			/>
 			{postError &&
-				<h1>Error has occurred: ${postError}</h1>
+				<h1>Error has occurred: <>${postError}</></h1>
 			}
 			<PostList remove={removePost} posts={sortedAndSearchedPosts} title={'Posts list'}/>
 			<div ref={lastElement}></div>

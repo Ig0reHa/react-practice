@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {FC} from 'react';
 import MyInput from "./UI/input/MyInput";
 import MySelect from "./UI/select/MySelect";
+import {E_SortOptions} from "../types/types";
 
-const PostFilter = ({filter, setFilter}) => {
+interface PostFilterProps {
+	filter: {sort: E_SortOptions, query: string}
+	setFilter: (filter: {sort: E_SortOptions, query: string}) => void
+}
+
+const PostFilter: FC<PostFilterProps> = ({filter, setFilter}) => {
 	return (
 		<div style={{marginBottom: '30px'}}>
 			<MyInput
@@ -15,8 +21,8 @@ const PostFilter = ({filter, setFilter}) => {
 				onChange={selSort => setFilter({...filter, sort: selSort})}
 				defaultValue="Sort by"
 				option={[
-					{value: 'title', name: 'By title'},
-					{value: 'body', name: 'By body'},
+					{value: E_SortOptions.title, name: 'By title'},
+					{value: E_SortOptions.body, name: 'By body'},
 				]}
 			/>
 		</div>

@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {FC} from 'react';
 import MyButton from "./UI/button/MyButton";
 import {useNavigate} from "react-router-dom";
+import {I_Post} from "../types/types";
 
-const PostItem = (props) => {
+interface PostItemProps {
+	post: I_Post
+	remove: (post: I_Post) => void
+}
+
+const PostItem: FC<PostItemProps> = (props) => {
 	const navigate = useNavigate()
 
 	return (

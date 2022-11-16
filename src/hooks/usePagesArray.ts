@@ -1,6 +1,6 @@
 import {useMemo} from "react";
 
-export const usePagesArray = (totalPages) => {
+export const usePagesArray = (totalPages: number) => {
 	return useMemo(() => {
 		let pagesArray = []
 		for (let i = 0; i < totalPages; i++) {
