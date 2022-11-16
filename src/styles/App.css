@@ -1,6 +1,8 @@
 #root {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   padding: 30px 0;
 }
 
@@ -11,7 +13,7 @@
 }
 
 .App {
-  width: 80%;
+  width: 100%;
 }
 
 .post {
@@ -21,6 +23,13 @@
   margin-top: 15px;
   justify-content: space-between;
   align-items: center;
+}
+
+.post__btns {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-left: 15px;
 }
 
 .post-enter {
@@ -39,4 +48,30 @@
   opacity: 0;
   transform: translateX(100%);
   transition: all 500ms ease-in-out;
+}
+
+.navbar {
+  width: 100vw;
+  padding: 0 15px;
+  margin-bottom: 15px;
+}
+
+.navbar__links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.post-page .loader {
+  margin: 0 auto;
+}
+
+.post-page h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.post-page__comment {
+  margin-bottom: 15px;
 }
